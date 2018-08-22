@@ -13,6 +13,7 @@ cubeN = x.^3;  % cubes
 % create a matrix of binary values for "contains star" (1) and "does not
 % contain star" (0)
 binaryStack = [];
+tic
 for i = 1:numImages
     image = imread(imageFiles(i).name);
     [m,n] = size(image);
@@ -21,10 +22,15 @@ for i = 1:numImages
     end
     binaryImage = imbinarize(image);
     binaryStack = cat(3,binaryStack,binaryImage);
+    if rem(i,20) == 0
+        disp(['We have binarized image ',num2str(i),'.'])
+    end
 end
+stackTime = toc/60;
 
 [height, length, depth] = size(binaryStack);
 % cubeStart = floor(height/3);
+tic
 containingCubes = [];
 for i = 1:20
    cubeHeight = floor(height/i); hIndex = 1:cubeHeight:height;
@@ -41,13 +47,14 @@ for i = 1:20
            end
        end
    end
-   containingCubes = [containingCubes;[i,pNum*qNum*rNum,cubeCount]];
+   e = 1/i;
+   D = -log(cubeCount)/(log(e));
+   containingCubes = [containingCubes;[i,pNum*qNum*rNum,cubeCount,D]];
+   disp(['We are on iteration ',num2str(i),'.'])
 end
-
+cubeTime = toc/60;
 
 % Fractal Dimension
 % log_e(N) = -D = log(N)/log(e)
 % Where N is the number of segments (cubes)
 % e is the fraction
-
-e = 1/20;
