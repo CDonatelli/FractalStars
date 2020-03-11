@@ -1,12 +1,12 @@
 
 %%%%%%% Uncomment for Batch Processing
-files = dir;
-% Get a logical vector that tells which is a directory.
-dirFlags = [files.isdir];
-folders = files(dirFlags);
-for fold = 3:length(folders)
-    cd(folders(fold).name)
-    name = folders(fold).name(1:end-11);
+% files = dir;
+% % Get a logical vector that tells which is a directory.
+% dirFlags = [files.isdir];
+% folders = files(dirFlags);
+% for fold = 3:length(folders)
+%     cd(folders(fold).name)
+%     name = folders(fold).name(1:end-11);
 %%%%%%% Uncomment for Batch Processing
 
     % Fractal Dimension
@@ -63,8 +63,8 @@ for fold = 3:length(folders)
        disp(['We are on iteration ',num2str(i),'.'])
     end
     cubeTime = toc/60;
-    save([name,'.mat'],containingCubes)
+    save(['RjordaniP.mat'],'containingCubes')
 %%%%%%% Uncomment for Batch Processing
-    cd ..
-end
+%     cd ..
+% end
 %%%%%%% Uncomment for Batch Processing
