@@ -63,8 +63,11 @@
        disp(['We are on iteration ',num2str(i),'.'])
     end
     cubeTime = toc/60;
+    % Change name to match the specimen you are processing
     save(['RjordaniP.mat'],'containingCubes')
+ 
 %%%%%%% Uncomment for Batch Processing
+%     save([name, '.mat'],'containingCubes')
 %     cd ..
 % end
 %%%%%%% Uncomment for Batch Processing
