@@ -30,10 +30,9 @@
         if m > n
             image = imrotate(image,90);
         end
-        binaryImage = imbinarize(image);
-        binaryStack = cat(3,binaryStack,binaryImage);
+        binaryStack = cat(3,binaryStack,image);
         if rem(i,20) == 0
-            disp(['We have binarized image ',num2str(i),'.'])
+            disp(['We have binarized and stacked image ',num2str(i),'.'])
         end
     end
     stackTime = toc/60;
@@ -63,8 +62,8 @@
        disp(['We are on iteration ',num2str(i),'.'])
     end
     cubeTime = toc/60;
-    % Change name to match the specimen you are processing
-    save(['RjordaniP.mat'],'containingCubes')
+% Change name to match the specimen you are processing
+    save(['LeptArm01.mat'],'containingCubes')
  
 %%%%%%% Uncomment for Batch Processing
 %     save([name, '.mat'],'containingCubes')
