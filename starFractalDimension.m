@@ -9,6 +9,7 @@
 %     name = folders(fold).name(1:end-11);
 %%%%%%% Uncomment for Batch Processing
 
+function [D1, D2, containingCubes] = starFractalDimension()
     % Fractal Dimension
     % log_e(N) = -D = log(N)/log(e)
     % Where N is the number of segments (cubes)
@@ -56,15 +57,21 @@
                end
            end
        end
-       e = 1/i;
-       D = -log(cubeCount)/(log(e));
-       containingCubes = [containingCubes;[i,pNum*qNum*rNum,cubeCount,D]];
+       e = 1/cubeHeight;
+%        D = -log(cubeCount)/(log(e));
+       containingCubes = [containingCubes;[i,cubeHeight,cubeCount]];
        disp(['We are on iteration ',num2str(i),'.'])
     end
     cubeTime = toc/60;
 % Change name to match the specimen you are processing
     save(['LeptArm01.mat'],'containingCubes')
  
+    Dp1 = polyfit(log(containingCubes(:,2)),log(containingCubes(:,3)),1);
+    D1 = abs(Dp1(1));
+    
+    Dp2 = polyfit(log(containingCubes(:,2).^2),log(containingCubes(:,3)),1);
+    D2 = abs(Dp2(1));
+end
 %%%%%%% Uncomment for Batch Processing
 %     save([name, '.mat'],'containingCubes')
 %     cd ..
