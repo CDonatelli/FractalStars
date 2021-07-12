@@ -1,7 +1,7 @@
 
 imageFiles = dir('*.bmp');
 
-for j = 1:length(imageFiles)
+% for j = 1:length(imageFiles)
 
     % Fractal Dimension
     % log_e(N) = -D = log(N)/log(e)
@@ -13,7 +13,7 @@ for j = 1:length(imageFiles)
 
     % create a matrix of binary values for "contains star" (1) and "does not
     % contain star" (0)
-    image = imread(imageFiles(j).name);
+    image = imread(imageFile);
     [m,n] = size(image);
         if m > n
             image = imrotate(image,90);
@@ -34,9 +34,18 @@ for j = 1:length(imageFiles)
            end
        end
        e = 1/i;
-       D = -log(squareCount)/(log(e));
-       containingSquares = [containingSquares;[i,pNum*qNum,squareCount,D]];
+%        D = -log(squareCount)/(log(e));
+       containingSquares = [containingSquares;[i,squareHeight,squareCount]];
        disp(['We are on iteration ',num2str(i),'.'])
-       save([imageFiles(j).name(1:end-8),'2D.mat'],'containingSquares')
     end
-end
+    
+    save([imageFile(1:end-4),'2D.mat'],'containingSquares')
+    
+    Dp1 = polyfit(log(containingSquares(:,2)),log(containingSquares(:,3)),1);
+    D1 = abs(Dp1(1));
+% end
+
+
+
+
+
