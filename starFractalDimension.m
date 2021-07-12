@@ -71,9 +71,10 @@ function [D1, D2, containingCubes] = starFractalDimension()
     
     Dp2 = polyfit(log(containingCubes(:,2).^2),log(containingCubes(:,3)),1);
     D2 = abs(Dp2(1));
-    
+
     figure
     plot(log(containingCubes(:,1)), log(containingCubes(:,3)),'b-o')
+
 end
 %%%%%%% Uncomment for Batch Processing
 %     save([name, '.mat'],'containingCubes')
