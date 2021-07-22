@@ -44,10 +44,10 @@ function [D1, D2, containingCubes] = starFractalDimension()
     containingCubes = [];
     for i = 1:20
        cubeHeight = floor(height/i); hIndex = 1:cubeHeight:height;
-    %    cubeLength = floor(height/i); lIndex = 1:cubeLength:length;
-    %    cubeDepth = floor(depth/i);   dIndex = 1:cubeDepth:depth;
+       cubeLength = floor(height/i); lIndex = 1:cubeLength:length;
+       cubeDepth = floor(depth/i);   dIndex = 1:cubeDepth:depth;
        cubeCount = 0;
-       currentCubes = mat2tiles(binaryStack ,[cubeHeight,cubeHeight,cubeHeight]);
+       currentCubes = mat2tiles(binaryStack ,[cubeHeight,cubeLength,cubeDepth]);
        [pNum, qNum, rNum] = size(currentCubes);
        for p = 1:pNum
            for q = 1:qNum
